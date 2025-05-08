@@ -24,9 +24,11 @@
         v-model="username"
         type="text"
         placeholder="Search GitHub username..."
-        class="input flex-1 py-2 px-2 outline-none text-base md:text-lg "
+        class="input flex-1 py-2 px-2 outline-none text-base md:text-lg"
+        @keydown.enter="search"
       />
       <button
+        type="submit"
         @click="search"
         class="btn hover:opacity-90 text-white font-bold py-2 px-3 md:py-3 md:px-6 rounded-lg transition-colors duration-200 mr-2 cursor-pointer"
       >
@@ -45,8 +47,43 @@ export default {
     };
   },
   methods: {
-    search() {
-      this.$emit("search", this.username);
+    // Feature: add local storage to user and theme preferences
+    async search() {
+      if (!this.username) {
+        alert("Por favor, insira um nome de usuário.");
+        return;
+      }
+      try {
+        const response = await fetch(
+          `https://api.github.com/users/${this.username}`
+        );
+        if (!response.ok) {
+          throw new Error("Usuário não encontrado");
+        }
+        const data = await response.json();
+        // Emitir os dados do usuário para o componente pai
+        this.$emit("search", {
+          name: data.name,
+          username: data.login,
+          joinDate: new Date(data.created_at).toLocaleDateString("pt-BR"),
+          bio: data.bio || "Esse usuário não tem bio",
+          avatar: data.avatar_url,
+
+          // stats
+          repos: data.public_repos,
+          followers: data.followers,
+          following: data.following,
+
+          // info
+          location: data.location || "Não disponível",
+          twitter: data.twitter_username || "Não disponível",
+          blog: data.blog || "Não disponível",
+          company: data.company || "Não disponível",
+        });
+      } catch (error) {
+        console.error("Erro:", error);
+        alert("Erro ao buscar o usuário. Tente novamente.");
+      }
     },
   },
 };
