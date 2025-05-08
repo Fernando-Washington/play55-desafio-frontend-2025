@@ -19,7 +19,13 @@
         >
           <div>
             <h2 class="text-2xl font-bold mb-1">{{ user.name }}</h2>
-            <a href="#" class="text-accent">@{{ user.username }}</a>
+            <a
+              :href="'https://github.com/' + user.username"
+              class="text-accent"
+              target="_blank"
+            >
+              @{{ user.username }}
+            </a>
             <p class="text-gray-500 mt-2">Joined {{ user.joinDate }}</p>
           </div>
         </div>
