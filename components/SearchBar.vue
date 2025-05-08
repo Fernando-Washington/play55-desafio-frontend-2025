@@ -65,7 +65,15 @@ export default {
         this.$emit("search", {
           name: data.name,
           username: data.login,
-          joinDate: new Date(data.created_at).toLocaleDateString("pt-BR"),
+          joinDate: new Date(data.created_at).toLocaleDateString("pt-BR", {
+            timeZone: "America/Sao_Paulo",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          }).replace(',',''),
           bio: data.bio || "Esse usuário não tem bio",
           avatar: data.avatar_url,
 
