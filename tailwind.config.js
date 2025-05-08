@@ -1,12 +1,14 @@
 module.exports = {
-  content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.{js,vue,ts}",
-    "./pages/**/*.{js,vue,ts}",
-    "./app.vue",
-  ],
+  darkMode: ["class"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        bodyBg: "var(--body-bg)",
+        cardBg: "var(--card-bg)",
+        inputBg: "var(--input-bg)",
+        textColor: "var(--text-color)",
+        accentColor: "var(--color-accent)",
+      },
+    },
   },
-  plugins: [],
-}
+};
