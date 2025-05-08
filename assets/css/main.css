@@ -1,1 +1,50 @@
 @import "tailwindcss";
+
+:root {
+  /* Light theme */
+  --body-bg: #e4e6f2;
+  --card-bg: #fefefe;
+  --input-bg: #fefefe;
+  --text-color: #4b6a9b;
+  --color-accent: #0079ff;
+}
+
+/* Dark theme */
+:root.dark-theme {
+  --body-bg: #111826;
+  --card-bg: #1c2840;
+  --input-bg: #1c2840;
+  --text-color: #ffffff;
+  --color-accent: #0079ff;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.card {
+  background-color: var(--card-bg);
+  transition: background-color 0.3s ease;
+}
+
+.input-container {
+  background-color: var(--input-bg);
+  transition: background-color 0.3s ease;
+}
+
+.input::placeholder {
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.btn {
+  background-color: var(--color-accent);
+  transition: background-color 0.3s ease;
+}
+
+.stats {
+  background-color: var(--body-bg);
+  transition: background-color 0.3s ease;
+}
