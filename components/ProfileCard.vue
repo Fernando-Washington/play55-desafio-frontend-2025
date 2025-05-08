@@ -1,7 +1,10 @@
 <template>
-  <div class="card bg-cardBg rounded-2xl shadow-md p-6 md:p-10">
+  <div
+    class="card bg-cardBg rounded-2xl shadow-md p-6 md:p-10"
+    v-show="isVisible"
+  >
     <!-- DESKTOP -->
-    <div class="hidden md:flex flex-row gap-8">
+    <div class="md:flex flex-row gap-8">
       <!-- Avatar -->
       <div class="flex-shrink-0">
         <img
@@ -301,21 +304,11 @@ export default {
   props: {
     user: {
       type: Object,
-      default: () => ({
-        name: "The Octocat",
-        username: "octocat",
-        joinDate: "25 Jan 2011",
-        bio: "",
-        avatar:
-          "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-        repos: 8,
-        followers: 3938,
-        following: 9,
-        location: "San Francisco",
-        twitter: "",
-        blog: "https://github.blog",
-        company: "@github",
-      }),
+      required: true,
+    },
+    isVisible: {
+      type: Boolean,
+      default: false,
     },
   },
 };

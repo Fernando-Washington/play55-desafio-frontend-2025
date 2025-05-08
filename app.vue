@@ -5,7 +5,7 @@
     <div class="w-full max-w-3xl">
       <AppHeader @toggle-theme="toggleTheme" :isDark="isDarkMode" />
       <SearchBar @search="updateUser" />
-      <ProfileCard :user="user" />
+      <ProfileCard :user="user" :isVisible="isCardVisible"/>
     </div>
   </div>
 </template>
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       isDarkMode: false,
+      isCardVisible: false,
       user: {
         name: "The Octocat",
         username: "octocat",
@@ -50,6 +51,7 @@ export default {
     },
     updateUser(userData) {
       this.user = userData;
+      this.isCardVisible = true;
     },
   },
 };
