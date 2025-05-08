@@ -4,7 +4,7 @@
   >
     <div class="w-full max-w-3xl">
       <AppHeader @toggle-theme="toggleTheme" :isDark="isDarkMode" />
-      <SearchBar @search="searchUser" />
+      <SearchBar @search="updateUser" />
       <ProfileCard :user="user" />
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
         name: "The Octocat",
         username: "octocat",
         joinDate: "25 Jan 2011",
-        bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
+        bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
         avatar:
           "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
         repos: 8,
@@ -48,10 +48,8 @@ export default {
       document.documentElement.classList.toggle("dark-theme", this.isDarkMode);
       localStorage.setItem("darkMode", this.isDarkMode ? "true" : "false");
     },
-    searchUser(username) {
-      // fetch
-      alert(`Pesquisando por: ${username}`);
-
+    updateUser(userData) {
+      this.user = userData;
     },
   },
 };
