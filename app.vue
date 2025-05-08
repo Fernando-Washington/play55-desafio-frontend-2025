@@ -1,15 +1,58 @@
 <template>
-  <div class="bg-blue-500 text-white p-4">
-    <h1 class="text-2xl font-bold">Hello World!</h1>
-    <p class="mt-2">Tailwindcss teste</p>
-    <button class="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">
-      Teste Tailwind
-    </button>
+  <div
+    class="min-h-screen py-8 px-4 md:px-6 flex flex-col items-center  duration-300"
+  >
+    <div class="w-full max-w-3xl">
+      <AppHeader @toggle-theme="toggleTheme" :isDark="isDarkMode" />
+      <SearchBar @search="searchUser" />
+      <ProfileCard :user="user" />
+    </div>
   </div>
 </template>
 
 <script>
+import AppHeader from "./components/AppHeader.vue";
+import SearchBar from "./components/SearchBar.vue";
+import ProfileCard from "./components/ProfileCard.vue";
+
 export default {
-  name: 'App',
-}
+  name: "App",
+  components: {
+    AppHeader,
+    SearchBar,
+    ProfileCard,
+  },
+  data() {
+    return {
+      isDarkMode: false,
+      user: {
+        name: "The Octocat",
+        username: "octocat",
+        joinDate: "25 Jan 2011",
+        bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
+        avatar:
+          "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+        repos: 8,
+        followers: 3938,
+        following: 9,
+        location: "San Francisco",
+        twitter: "",
+        blog: "https://github.blog",
+        company: "@github",
+      },
+    };
+  },
+  methods: {
+    toggleTheme() {
+      this.isDarkMode = !this.isDarkMode;
+      document.documentElement.classList.toggle("dark-theme", this.isDarkMode);
+      localStorage.setItem("darkMode", this.isDarkMode ? "true" : "false");
+    },
+    searchUser(username) {
+      // fetch
+      alert(`Pesquisando por: ${username}`);
+
+    },
+  },
+};
 </script>
