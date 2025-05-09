@@ -1,59 +1,69 @@
 <template>
   <header class="flex justify-between items-center mb-8">
     <h1 class="text-2xl font-bold">devfinder</h1>
+    <nav>
+      <NuxtLink
+        to="/history"
+        class="text-1xl font-bold hover:text-blue-100 hover:underline cursor-pointer"
+        >History</NuxtLink
+      >
+    </nav>
     <button
-      @click="$emit('toggle-theme')"
+      @click="toggleTheme"
       class="flex items-center gap-2 uppercase font-bold text-accent cursor-pointer"
     >
       <template v-if="isDark">
         LIGHT
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-sun"
-        >
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2"></path>
-          <path d="M12 20v2"></path>
-          <path d="m4.93 4.93 1.41 1.41"></path>
-          <path d="m17.66 17.66 1.41 1.41"></path>
-          <path d="M2 12h2"></path>
-          <path d="M20 12h2"></path>
-          <path d="m6.34 17.66-1.41 1.41"></path>
-          <path d="m19.07 4.93-1.41 1.41"></path>
-        </svg>
+        <Sun />
       </template>
       <template v-else>
         DARK
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-moon"
-        >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-        </svg>
+        <Moon />
       </template>
     </button>
   </header>
 </template>
 
 <script>
+import { Moon } from "lucide-vue-next";
+import { Sun } from "lucide-vue-next";
+
 export default {
   name: "AppHeader",
-  emits: ["toggle-theme"],
+  components: {
+    Moon,
+    Sun,
+  },
+  data() {
+    return {
+      isDark: false,
+    };
+  },
+  mounted() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      this.isDark = true;
+      document.documentElement.classList.add("dark-theme");
+    } else {
+      this.isDark = false;
+      document.documentElement.classList.remove("dark-theme");
+    }
+  },
+  methods: {
+    toggleTheme() {
+      // change state
+      this.isDark = !this.isDark;
+
+      if (this.isDark) {
+        // Apply dark theme
+        document.documentElement.classList.add("dark-theme");
+        localStorage.setItem("theme", "dark");
+      } else {
+        // Apply dark theme
+        document.documentElement.classList.remove("dark-theme");
+        localStorage.setItem("theme", "light");
+      }
+    },
+  },
 };
 </script>
