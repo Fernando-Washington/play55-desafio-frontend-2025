@@ -39,7 +39,7 @@
               rel="noopener noreferrer"
               class="text-accent hover:underline"
             >
-              @{{ item.linkProfile.split("https://github.com/")[1] }}
+              @{{ item.linkProfile ? item.linkProfile.split("https://github.com/")[1] : "Unknown" }}
             </a>
           </div>
           <button class="flex ml-auto">

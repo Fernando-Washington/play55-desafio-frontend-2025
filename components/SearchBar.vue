@@ -136,25 +136,25 @@ export default {
     updateSearchHistory(userData) {
       const storageData = {
         avatar: userData.avatar,
-        nome: userData.name,
+        name: userData.name,
         linkProfile: `https://github.com/${userData.username}`,
       };
 
-      const historico = JSON.parse(
+      const history = JSON.parse(
         localStorage.getItem("searchHistory") || "[]"
       );
 
-      const alreadyExistsIndex = historico.findIndex(
-        (element) => element.nome === storageData.nome
+      const alreadyExistsIndex = history.findIndex(
+        (element) => element.name === storageData.name
       );
 
       if (alreadyExistsIndex !== -1) {
-        historico.splice(alreadyExistsIndex, 1);
+        history.splice(alreadyExistsIndex, 1);
       }
 
-      historico.unshift(storageData);
+      history.unshift(storageData);
 
-      localStorage.setItem("searchHistory", JSON.stringify(historico));
+      localStorage.setItem("searchHistory", JSON.stringify(history));
     },
   },
 };
