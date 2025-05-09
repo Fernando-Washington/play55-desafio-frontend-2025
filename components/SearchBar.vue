@@ -10,7 +10,7 @@
     >
       <!-- Search Icon -->
       <legend id="search-bar-title" class="sr-only">
-        Buscar usuário no GitHub
+        Search user on Github
       </legend>
       <div class="flex items-center justify-center w-12 h-12 text-accent">
         <Search />
@@ -31,7 +31,7 @@
       <!-- Search btn -->
       <button
         type="submit"
-        class="btn hover:opacity-90 text-white font-bold py-2 px-3 md:py-3 md:px-6 rounded-lg transition-colors duration-200 mr-2 cursor-pointer"
+        class="btn text-white font-bold py-2 px-3 md:py-3 md:px-6 rounded-lg transition-colors duration-200 mr-2 cursor-pointer"
         aria-label="Buscar usuário no GitHub"
       >
         Search
@@ -44,7 +44,7 @@
     <ErrorModal
       :isVisible="showErrorModal"
       :message="errorMessage"
-      @close="showErrorModal = false"
+      @close="handleModalClose"
     />
   </form>
 </template>
@@ -70,7 +70,7 @@ export default {
   methods: {
     async search() {
       if (!this.username.trim()) {
-        this.handleError("Por favor, insira um nome de usuário.");
+        this.handleError("Please enter a username.");
         return;
       }
 
@@ -81,7 +81,7 @@ export default {
           `https://api.github.com/users/${this.username}`
         );
         if (!response.ok) {
-          throw new Error("Usuário não encontrado");
+          throw new Error("User not found");
         }
         const data = await response.json();
 
@@ -91,13 +91,21 @@ export default {
 
         this.$emit("search", userData);
       } catch (error) {
-        this.handleError("Erro ao buscar o usuário. Tente novamente.");
+        this.handleError("Error fetching user. Please try again.");
       }
+    },
+    handleModalClose() {
+      this.showErrorModal = false;
+      this.hasError = false;
     },
     handleError(message) {
       this.hasError = true;
-      this.errorMessage = message;
+      this.errorMessage = message || "An unexpected error has occurred.";
       this.showErrorModal = true;
+
+      setTimeout(() => {
+        this.showErrorModal = false;
+      }, 3000);
     },
     formatUserData(data) {
       return {
@@ -114,22 +122,22 @@ export default {
             hour12: false,
           })
           .replace(",", ""),
-        bio: data.bio || "Esse usuário não tem bio",
+        bio: data.bio || "This user has no bio",
         avatar: data.avatar_url,
         repos: data.public_repos,
         followers: data.followers,
         following: data.following,
-        location: data.location || "Não disponível",
-        twitter: data.twitter_username || "Não disponível",
-        blog: data.blog || "Não disponível",
-        company: data.company || "Não disponível",
+        location: data.location || "Not available",
+        twitter: data.twitter_username || "Not available",
+        blog: data.blog || "Not available",
+        company: data.company || "Not available",
       };
     },
     updateSearchHistory(userData) {
       const storageData = {
         avatar: userData.avatar,
         nome: userData.name,
-        linkPerfil: `https://github.com/${userData.username}`,
+        linkProfile: `https://github.com/${userData.username}`,
       };
 
       const historico = JSON.parse(
@@ -161,11 +169,21 @@ export default {
   border: 1px solid transparent;
 }
 
+.input::placeholder {
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
 .btn {
   background-color: var(--color-accent);
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  background-color: var(--color-accent-hover);
+  filter: brightness(0.8);
+}
+
+.btn:active {
+  transform: scale(0.95);
 }
 </style>
