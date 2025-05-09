@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     head: {
       title: 'devfinder',
       htmlAttrs: {
-        lang: 'pt-BR',
+        lang: 'en',
       },
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
