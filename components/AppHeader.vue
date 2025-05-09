@@ -4,7 +4,7 @@
     <nav>
       <NuxtLink
         to="/history"
-        class="text-1xl font-bold hover:text-blue-100 hover:underline cursor-pointer"
+        class="text-1xl font-bold hover:text-blue- hover:underline cursor-pointer"
         >History</NuxtLink
       >
     </nav>
