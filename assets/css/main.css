@@ -24,28 +24,8 @@ body {
   transition: color 0.3s ease;
 }
 
-.card {
-  background-color: var(--card-bg);
-  transition: background-color 0.3s ease;
-}
-
 .input-container,
 .modal-container {
   background-color: var(--input-bg);
-  transition: background-color 0.3s ease;
-}
-
-.input::placeholder {
-  color: var(--text-color);
-  transition: background-color 0.3s ease;
-}
-
-.btn {
-  background-color: var(--color-accent);
-  transition: background-color 0.3s ease;
-}
-
-.stats {
-  background-color: var(--body-bg);
   transition: background-color 0.3s ease;
 }

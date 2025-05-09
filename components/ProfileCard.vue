@@ -35,16 +35,16 @@
         </header>
 
         <!-- Bio -->
-        <section aria-label="Biografia do usuário">
+        <section aria-label="User biography">
           <p class="mb-8 md:w-full">
-            {{ user.bio || "Esse usuário não tem bio" }}
+            {{ user.bio || "This user has no bio" }}
           </p>
         </section>
 
         <!-- Stats -->
         <section
           class="stats grid grid-cols-3 gap-2 bg-pageBg rounded-lg p-4 mb-8"
-          aria-label="Estatísticas do usuário"
+          aria-label="User Statistics"
         >
           <div class="text-center md:text-left">
             <p class="text-sm text-gray-500">Repos</p>
@@ -80,10 +80,14 @@
             class="flex items-center gap-3"
             :class="{ 'opacity-50': !user.blog }"
           >
-            <Link />
-            <a :href="user.blog" class="hover:underline" v-if="user.blog">{{
-              user.blog
-            }}</a>
+            <ExternalLink />
+            <a
+              :href="user.blog"
+              class="hover:underline"
+              target="_blank"
+              v-if="user.blog"
+              >{{ user.blog }}</a
+            >
             <span v-else>Not Available</span>
           </div>
           <div
@@ -153,7 +157,7 @@
           class="flex items-center gap-3"
           :class="{ 'opacity-50': !user.blog }"
         >
-          <Link />
+          <ExternalLink />
           <a
             :href="user.blog"
             class="hover:underline truncate"
@@ -176,7 +180,7 @@
 
 <script>
 import { MapPin } from "lucide-vue-next";
-import { Link } from "lucide-vue-next";
+import { ExternalLink } from "lucide-vue-next";
 import { Twitter } from "lucide-vue-next";
 import { Building2 } from "lucide-vue-next";
 
@@ -184,7 +188,7 @@ export default {
   name: "ProfileCard",
   components: {
     MapPin,
-    Link,
+    ExternalLink,
     Twitter,
     Building2,
   },
@@ -200,3 +204,15 @@ export default {
   },
 };
 </script>
+
+<style>
+.card {
+  background-color: var(--card-bg);
+  transition: background-color 0.3s ease;
+}
+
+.stats {
+  background-color: var(--body-bg);
+  transition: background-color 0.3s ease;
+}
+</style>
