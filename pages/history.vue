@@ -10,11 +10,11 @@
             class="absolute left-0 top-4 flex items-center hover:text-accentColor pl-4"
           >
             <ArrowLeft class="mr-2" />
-            <span class="hidden md:inline">Voltar</span>
+            <span class="hidden md:inline">Back</span>
           </a>
         </nav>
 
-        <h2 class="text-xl font-bold text-center">Histórico de Pesquisas</h2>
+        <h2 class="text-xl font-bold text-center">Search History</h2>
       </header>
 
       <section
@@ -32,14 +32,14 @@
             class="w-12 h-12 rounded-full mr-4"
           />
           <div>
-            <p class="font-semibold">{{ item.nome || "Sem nome" }}</p>
+            <p class="font-semibold">{{ item.name || "No name" }}</p>
             <a
-              :href="item.linkPerfil"
+              :href="item.linkProfile"
               target="_blank"
               rel="noopener noreferrer"
               class="text-accent hover:underline"
             >
-              @{{ item.linkPerfil.split("https://github.com/")[1] }}
+              @{{ item.linkProfile.split("https://github.com/")[1] }}
             </a>
           </div>
           <button class="flex ml-auto">
@@ -52,7 +52,7 @@
       </section>
 
       <div v-else class="card text-center p-8 rounded-lg shadow-md">
-        <p>Nenhuma pesquisa no histórico.</p>
+        <p>No search history.</p>
       </div>
     </section>
   </main>
@@ -73,15 +73,15 @@ export default {
     };
   },
   mounted() {
-    // Carregar o histórico do localStorage
-    const historico = JSON.parse(localStorage.getItem("searchHistory") || "[]");
-    this.searchHistory = historico;
+    // Load search history from localStorage
+    const history = JSON.parse(localStorage.getItem("searchHistory") || "[]");
+    this.searchHistory = history;
   },
   methods: {
     removeHistoryItem(index) {
-      // Remover item do histórico
+      // rm item from search history
       this.searchHistory.splice(index, 1);
-      // Atualizar o localStorage
+      // Update localStorage
       localStorage.setItem("searchHistory", JSON.stringify(this.searchHistory));
     },
   },
