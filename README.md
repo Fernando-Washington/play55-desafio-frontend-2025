@@ -1,75 +1,61 @@
-# Nuxt Minimal Starter
+# DevFinder - Desafio Técnico Estágio Front-end Web Play55
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Sobre o Desafio
 
-## Setup
+Este projeto foi desenvolvido como parte do desafio técnico da Play55, com o objetivo de avaliar conhecimentos técnicos no desenvolvimento web, focando principalmente na utilização do framework Vue 3 e Nuxt 3, e na utilização de bibliotecas para criar uma boa experiência de usuário, com um projeto funcional e otimizado.
 
-Make sure to install dependencies:
+O desafio consistiu em criar um buscador de perfil do GitHub, com integração com o Recaptcha, seguindo o design proposto pelo [Frontend Mentor](https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6).
 
-```bash
-# npm
-npm install
+![image](https://github.com/user-attachments/assets/49e609b2-ba88-43a4-83e8-b25c1e5f3c61)
+![image](https://github.com/user-attachments/assets/a5affffb-f4b9-43ed-b253-dfd4861f341d)
 
-# pnpm
-pnpm install
 
-# yarn
-yarn install
 
-# bun
-bun install
-```
+## Funcionalidades
 
-## Development Server
+O DevFinder é uma aplicação moderna e elegante que permite buscar usuários do GitHub e visualizar seus perfis em uma interface belamente projetada. Construído com Vue.js e Nuxt, oferece uma experiência perfeita com temas claro e escuro.
 
-Start the development server on `http://localhost:3000`:
+### Requisitos Implementados:
 
-```bash
-# npm
-npm run dev
+- 🔍 **Busca de Usuários do GitHub** - Encontre qualquer usuário do GitHub pelo nome de usuário
+- 👤 **Perfil Detalhado** - Visualize informações completas do usuário:
+  - Foto de perfil
+  - Nome
+  - Nome do perfil ("@ do perfil") - clicável, abrindo o GitHub no perfil do usuário
+  - Descrição do perfil
+  - Quantidade de repositórios
+  - Quantidade de seguidores
+  - Quantidade de pessoas que o usuário está seguindo
+  - Localização do perfil
+  - Links sociais (clicáveis, redirecionando para os respectivos links)
+- 🌓 **Modo Claro/Escuro** - Alterne entre temas claro e escuro com um único clique
+- 📱 **Design Responsivo** - Funciona perfeitamente em dispositivos móveis, tablets e desktops
+- 📝 **Formulário de Contato** - Entre em contato através do formulário integrado com validação reCAPTCHA
+- 📜 **Histórico de Busca** - Acompanhe suas pesquisas anteriores, salvas no localStorage
+- 🔒 **Integração com reCAPTCHA** - Envios de formulários seguros com Google reCAPTCHA v3
 
-# pnpm
-pnpm dev
+## 🛠 Tecnologias
 
-# yarn
-yarn dev
+- **Framework Frontend**: [Vue.js 3](https://vuejs.org/) com [Nuxt.js 3](https://nuxt.com/)
+- **Estilização**: [Tailwind CSS](https://tailwindcss.com/) para estilização baseada em utilitários
+- **Ícones**: [Lucide Vue](https://lucide.dev/) para ícones bonitos e consistentes
+- **API**: API do GitHub para buscar dados de usuários
+- **Segurança**: Google reCAPTCHA v3 para proteção de formulários
+- **Armazenamento**: LocalStorage para salvar o histórico de pesquisas
+- **Renderização**: Client-side Rendering (CSR)
+- **Implantação**: Vercel
 
-# bun
-bun run dev
-```
+## Como Começar
 
-## Production
+### Pré-requisitos
 
-Build the application for production:
+- Node.js (v16 ou superior)
+- npm ou yarn
 
-```bash
-# npm
-npm run build
+### Instalação
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
+1. Clone o repositório:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+git clone https://github.com/seuusuario/devfinder.git
+cd devfinder
