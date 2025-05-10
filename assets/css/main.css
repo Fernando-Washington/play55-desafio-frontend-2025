@@ -25,7 +25,8 @@ body {
 }
 
 .input-container,
-.modal-container {
+.modal-container,
+.form-container {
   background-color: var(--input-bg);
   transition: background-color 0.3s ease;
 }
